@@ -172,8 +172,8 @@ function Nav( {setScreen} ) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar >
+      <AppBar style={{flex: 1}} position="static">
+        <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -184,9 +184,9 @@ function Nav( {setScreen} ) {
                     src={require('../img/logo.png')}/>
           </IconButton>
           <Typography style={{textTransform: 'uppercase'}} className={classes.title} variant="h6" noWrap>
-            Газпром  BEST IDEAS
+            Газпром BEST IDEAS
           </Typography>
-          <MyTabs/>
+            <MyTabs/>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon/>

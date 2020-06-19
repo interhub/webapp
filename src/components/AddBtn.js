@@ -11,7 +11,7 @@ import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { connect } from "react-redux";
-import { setScreen } from "../store/actions";
+import { setBack, setScreen } from "../store/actions";
 import { ADD_IDEA } from '../store/screenNames'
 
 const useStyles = makeStyles(( theme ) => ({
@@ -32,33 +32,33 @@ const actions = [
   {icon: <FavoriteIcon/>, name: 'Группа идей'},
 ];
 
-function AddBtn( {setScreen} ) {
+function AddBtn( {setScreen, setBack} ) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
-
-  useEffect(() => {
-    window.onscroll = () => {
-      if (window.pageYOffset > 1) {
-        setHidden(( prevHidden ) => false);
-      } else {
-        setHidden(( prevHidden ) => true);
-      }
-    }
-  }, [])
+  //
+  // useEffect(() => {
+  //   window.onscroll = () => {
+  //     if (window.pageYOffset > 1) {
+  //       setHidden(( prevHidden ) => false);
+  //     } else {
+  //       setHidden(( prevHidden ) => true);
+  //     }
+  //   }
+  // }, [])
 
   const handleOpen = () => {
     setOpen(true);
+    setBack(true)
   };
 
   const handleClose = () => {
     setOpen(false);
-    setScreen(ADD_IDEA)
+    setBack(false)
   };
 
   return (
-    <div style={{position: 'fixed', height: '91vh', width: '100vw'}} className={classes.root}>
-      <Backdrop open={open}/>
+    <div style={{position: 'fixed', bottom: 10, right: 10}} className={classes.root}>
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
         className={classes.speedDial}
@@ -76,7 +76,9 @@ function AddBtn( {setScreen} ) {
             icon={action.icon}
             tooltipTitle={action.name}
             tooltipOpen
-            onClick={handleClose}
+            onClick={() => {
+              setScreen(ADD_IDEA)
+            }}
           />
         ))}
       </SpeedDial>
@@ -91,7 +93,8 @@ const mstp = ( state ) => {
   }
 }
 const mdtp = {
-  setScreen
+  setScreen,
+  setBack
 }
 
 const ConnectAddBtn = connect(mstp, mdtp)(AddBtn)

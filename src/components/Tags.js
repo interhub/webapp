@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import location from '../../varibles/location'
-import ProfileAll from './profile/ProfileAll'
 
-const Profile = ( {screen} ) => {
+const Tags = ( {screen} ) => {
 
   const getData = () => {
     fetch(location + '/user')
@@ -21,9 +20,8 @@ const Profile = ( {screen} ) => {
     getData()
   }, [])
   return (
-
-    <div>
-      <ProfileAll />
+    <div style={{backgroundColor: 'red'}}>
+      Теги
     </div>
   );
 }
@@ -37,6 +35,7 @@ const mdtp = ( dispatch ) => {
   return {}
 }
 
-const ConnectProfile = connect(mstp, mdtp)(Profile)
+const ConnectTags = connect(mstp, mdtp)(Tags)
 
-export default ConnectProfile;
+
+export default ConnectTags;

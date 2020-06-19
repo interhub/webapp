@@ -11,9 +11,10 @@ import Main from "./pages/Main/Main";
 import Profile from "./pages/Profile/Profile";
 import Group from "./pages/Group/Group";
 import Groups from "./pages/Groups/Groups";
+import Backdrop from "@material-ui/core/Backdrop";
 
 
-const App = ( {screen} ) => {
+const App = ( {screen, back} ) => {
 
   const getData = () => {
     fetch(location + '/user')
@@ -35,6 +36,7 @@ const App = ( {screen} ) => {
     <div className="App">
       <Nav/>
       <AddBtn/>
+      <Backdrop open={back}/>
       {screen === MAIN_PAGE && <Main/>}
       {screen === PROFILE && <Profile/>}
       {screen === ADD_IDEA && <AddIdea/>}
@@ -46,7 +48,8 @@ const App = ( {screen} ) => {
 
 const mstp = ( state ) => {
   return {
-    screen: state.screen
+    screen: state.screen,
+    back: state.back
   }
 }
 const mdtp = ( dispatch ) => {

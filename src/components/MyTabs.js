@@ -6,48 +6,6 @@ import Tab from '@material-ui/core/Tab';
 import { MAIN_PAGE, GROUPS, PROFILE, ADD_IDEA } from '../store/screenNames'
 import { setScreen } from "../store/actions";
 
-const AntTabs = withStyles({
-  root: {
-    borderBottom: '1px solid #e8e8e8',
-  },
-  indicator: {
-    backgroundColor: '#1890ff',
-  },
-})(Tabs);
-
-const AntTab = withStyles(( theme ) => ({
-  root: {
-    textTransform: 'none',
-    minWidth: 72,
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
-    },
-    '&$selected': {
-      color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&:focus': {
-      color: '#40a9ff',
-    },
-  },
-  selected: {},
-}))(( props ) => <Tab disableRipple {...props} />);
-
 const StyledTabs = withStyles({
   indicator: {
     display: 'flex',
@@ -107,7 +65,7 @@ function MyTabs( {screen, setScreen} ) {
   }
 
   return (
-    <StyledTabs value={getValueNyScreen(screen)} onChange={handleChange} aria-label="styled tabs example">
+    <StyledTabs  value={getValueNyScreen(screen)} onChange={handleChange} aria-label="styled tabs example">
       <StyledTab label="Главная"/>
       <StyledTab label="Профиль"/>
       <StyledTab label="Последние новости"/>
