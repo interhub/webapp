@@ -14,6 +14,6 @@ const reducer = ( state, action ) => {
   }
 };
 //store
-const index = createStore(reducer, state);
+const store = createStore(reducer, state);
 
-export default index;
+export default store;

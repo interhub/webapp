@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import store from './store/store'
+import { Provider, connect } from 'react-redux'
+import Nav from "./components/Nav";
 import './App.css';
+import { MAIN_PAGE } from './store/screenNames'
 
-function App() {
+const App = ( {screen} ) => {
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav/>
+      {/*КОД ПИСАТЬ ТУТ*/}
     </div>
   );
 }
 
-export default App;
+const mstp = ( state ) => {
+  return {
+    screen: state.screen
+  }
+}
+const mdtp = ( dispatch ) => {
+  return {}
+}
+
+const ConnectApp = connect(mstp, mdtp)(App)
+
+const ProviderApp = () => {
+  return <Provider store={store}>
+    <ConnectApp/>
+  </Provider>
+}
+
+export default ProviderApp;
