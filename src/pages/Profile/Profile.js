@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import location from '../../varibles/location'
+import ProfileAll from './profile/ProfileAll'
 
 const Profile = ( {screen} ) => {
 
@@ -22,7 +23,7 @@ const Profile = ( {screen} ) => {
   return (
 
     <div>
-      Профиль пользователя
+      <ProfileAll />
     </div>
   );
 }
