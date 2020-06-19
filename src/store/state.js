@@ -1,6 +1,8 @@
-import {MAIN_PAGE} from './screenNames';
+import { MAIN_PAGE } from './screenNames';
 
 export default {
   //активный экран
   screen: MAIN_PAGE,
+  back: false,
+  tags: ['Увееличение производительности', 'Комфорт в офисе', 'Покупка стаканчиков', 'Уход за растениями', 'Увееличение производительности', 'Комфорт в офисе']
 };

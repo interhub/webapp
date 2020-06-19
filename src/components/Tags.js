@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import location from '../../varibles/location'
 
-const AddIdea = ( {screen} ) => {
+const Tags = ( {screen} ) => {
 
   const getData = () => {
     fetch(location + '/user')
@@ -20,8 +20,8 @@ const AddIdea = ( {screen} ) => {
     getData()
   }, [])
   return (
-    <div>
-      Главная страница
+    <div style={{backgroundColor: 'red'}}>
+      Теги
     </div>
   );
 }
@@ -35,7 +35,7 @@ const mdtp = ( dispatch ) => {
   return {}
 }
 
-const ConnectAddIdea = connect(mstp, mdtp)(AddIdea)
+const ConnectTags = connect(mstp, mdtp)(Tags)
 
 
-export default ConnectAddIdea;
+export default ConnectTags;

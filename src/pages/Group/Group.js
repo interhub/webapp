@@ -22,7 +22,7 @@ const Group = ( {screen} ) => {
   return (
 
     <div>
-      Группы идей
+      Группа идей
     </div>
   );
 }
