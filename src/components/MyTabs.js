@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { MAIN_PAGE, GROUP, PROFILE, ADD_IDEA } from '../store/screenNames'
+import { MAIN_PAGE, GROUPS, PROFILE, ADD_IDEA } from '../store/screenNames'
 import { setScreen } from "../store/actions";
 
 const AntTabs = withStyles({
@@ -86,7 +86,7 @@ function MyTabs( {screen, setScreen} ) {
         setScreen(PROFILE);
         break
       case 2:
-        setScreen(MAIN_PAGE);
+        setScreen(GROUPS);
         break
       default :
         setScreen(MAIN_PAGE);
@@ -98,9 +98,9 @@ function MyTabs( {screen, setScreen} ) {
       case MAIN_PAGE:
         return 0
       case PROFILE:
-        return 1
-      case ADD_IDEA:
-        return 0
+        return 1;
+      case GROUPS:
+        return 2
       default :
         return 0
     }

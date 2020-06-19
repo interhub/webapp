@@ -12,6 +12,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { connect } from "react-redux";
 import { setScreen } from "../store/actions";
+import { ADD_IDEA } from '../store/screenNames'
 
 const useStyles = makeStyles(( theme ) => ({
   root: {
@@ -52,10 +53,11 @@ function AddBtn( {setScreen} ) {
 
   const handleClose = () => {
     setOpen(false);
+    setScreen(ADD_IDEA)
   };
 
   return (
-    <div style={{position: 'fixed', height: '91vh ', width: '100vw'}} className={classes.root}>
+    <div style={{position: 'fixed', height: '91vh', width: '100vw'}} className={classes.root}>
       <Backdrop open={open}/>
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
@@ -68,6 +70,7 @@ function AddBtn( {setScreen} ) {
       >
         {actions.map(( action ) => (
           <SpeedDialAction
+
             style={{marginBottom: 20}}
             key={action.name}
             icon={action.icon}

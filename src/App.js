@@ -4,12 +4,13 @@ import { Provider, connect } from 'react-redux'
 import Nav from "./components/Nav";
 import './App.css';
 import location from './varibles/location'
-import { MAIN_PAGE, PROFILE, ADD_IDEA, GROUP } from './store/screenNames'
+import { MAIN_PAGE, PROFILE, ADD_IDEA, GROUP, GROUPS } from './store/screenNames'
 import AddBtn from "./components/AddBtn";
 import AddIdea from "./pages/AddIdea/AddIdea";
 import Main from "./pages/Main/Main";
 import Profile from "./pages/Profile/Profile";
 import Group from "./pages/Group/Group";
+import Groups from "./pages/Groups/Groups";
 
 
 const App = ( {screen} ) => {
@@ -38,6 +39,7 @@ const App = ( {screen} ) => {
       {screen === PROFILE && <Profile/>}
       {screen === ADD_IDEA && <AddIdea/>}
       {screen === GROUP && <Group/>}
+      {screen === GROUPS && <Groups/>}
     </div>
   );
 }

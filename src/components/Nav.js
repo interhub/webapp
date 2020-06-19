@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import MyTabs from './MyTabs'
 import { setScreen } from "../store/actions";
-import { PROFILE, MAIN_PAGE, ADD_IDEA } from '../store/screenNames'
+import { PROFILE, MAIN_PAGE, ADD_IDEA, GROUPS } from '../store/screenNames'
 
 const useStyles = makeStyles(( theme ) => ({
   grow: {
@@ -173,17 +173,18 @@ function Nav( {setScreen} ) {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar >
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
-            <Avatar onClick={() => setScreen(MAIN_PAGE)} alt="Remy Sharp" src={require('../img/logo.png')}/>
+            <Avatar className={classes.small} onClick={() => setScreen(MAIN_PAGE)} alt="Remy Sharp"
+                    src={require('../img/logo.png')}/>
           </IconButton>
           <Typography style={{textTransform: 'uppercase'}} className={classes.title} variant="h6" noWrap>
-            Газпром BEST IDEAS
+            Газпром  BEST IDEAS
           </Typography>
           <MyTabs/>
           <div className={classes.search}>
@@ -206,7 +207,7 @@ function Nav( {setScreen} ) {
             {/*    <MailIcon/>*/}
             {/*  </Badge>*/}
             {/*</IconButton>*/}
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            <IconButton onClick={() => setScreen(GROUPS)} aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon/>
               </Badge>

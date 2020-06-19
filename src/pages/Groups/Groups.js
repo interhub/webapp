@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import location from '../../varibles/location'
 
-const AddIdea = ( {screen} ) => {
+const Group = ( {screen} ) => {
 
   const getData = () => {
     fetch(location + '/user')
@@ -20,8 +20,9 @@ const AddIdea = ( {screen} ) => {
     getData()
   }, [])
   return (
+
     <div>
-      Главная страница
+      Группы идей
     </div>
   );
 }
@@ -35,7 +36,7 @@ const mdtp = ( dispatch ) => {
   return {}
 }
 
-const ConnectAddIdea = connect(mstp, mdtp)(AddIdea)
+const ConnectGroup = connect(mstp, mdtp)(Group)
 
 
-export default ConnectAddIdea;
+export default ConnectGroup;
