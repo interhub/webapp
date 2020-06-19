@@ -4,13 +4,14 @@ import { Provider, connect } from 'react-redux'
 import Nav from "./components/Nav";
 import './App.css';
 import { MAIN_PAGE } from './store/screenNames'
+import ProfileAll from "./store/profile/ProfileAll";
 
 const App = ( {screen} ) => {
   return (
 
     <div className="App">
       <Nav/>
-      {/*КОД ПИСАТЬ ТУТ*/}
+      <ProfileAll />
     </div>
   );
 }
