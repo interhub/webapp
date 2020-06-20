@@ -69,7 +69,7 @@ function MyTabs( {setScreen, screen} ) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const openMain=()=>{
+  const openMain = () => {
     setScreen(MAIN_PAGE);
   }
 
@@ -110,13 +110,14 @@ function MyTabs( {setScreen, screen} ) {
         variant="fullWidth"
         aria-label="nav tabs example"
       >
-        <LinkTab label="Главная" {...a11yProps(0)} />
-        <LinkTab label="Профиль" {...a11yProps(1)} />
-        <LinkTab label="Последние новости" {...a11yProps(2)} />
+        <LinkTab style={{fontSize: 14}} label="Главная" {...a11yProps(0)} />
+        <LinkTab style={{fontSize: 14}} label="Профиль" {...a11yProps(1)} />
+        <LinkTab style={{fontSize: 14}} label="Последние новости" {...a11yProps(2)} />
       </Tabs>
       }
       {!(screen === MAIN_PAGE || screen === PROFILE || screen === GROUPS) &&
-      <Button onClick={() => setScreen(MAIN_PAGE)} style={{color: 'white', height: 45, marginLeft: 5}}
+      <Button size="small" onClick={() => setScreen(MAIN_PAGE)}
+              style={{color: 'white', height: 45, marginLeft: 5, fontSize: 10}}
               startIcon={<ExiteIcon/>} variant="outlined">На
         главную</Button>}
     </div>

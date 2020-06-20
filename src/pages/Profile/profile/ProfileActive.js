@@ -5,10 +5,11 @@ import Tags from "../../../components/Tags";
 import Idea from "../../../components/Idea";
 import ProfileTabs from "./ProfileTabs";
 import Drawer from "@material-ui/core/Drawer";
-import card from "../images/карточка идеи.png"
+import { setScreen } from "../../../store/actions";
+import { connect } from "react-redux";
 
-function ProfileActive() {
-  return (<div className="ProfileHeader">
+function ProfileActive( {user} ) {
+  return (<div>
     <Typography variant="h4" style={{textAlign: 'left', margin: 10}}>Моя активность</Typography>
     <ProfileTabs/>
     <div>
@@ -16,13 +17,25 @@ function ProfileActive() {
         {/*{ideas.map(( idea, i ) => {*/}
         {/*  return <Idea {...idea} num={i} key={i} like={like}/>*/}
         {/*})}*/}
-        массив активности (личные идеи и достижения)
-        <img src={card}/>
-        <img src={card}/>
-        <img src={card}/>
+        {user.ideas.length == 0 && <Typography style={{marginTop: 30}} variant={'h4'}>
+          Впервые у нас? Создайте свое предложение!
+        </Typography>}
       </div>
     </div>
   </div>)
 }
 
-export default ProfileActive;
+
+const mstp = ( state ) => {
+  return {
+    screen: state.screen,
+    user: state.user
+  }
+}
+const mdtp = {
+  setScreen
+}
+
+const ConnectProfileActive = connect(mstp, mdtp)(ProfileActive)
+
+export default ConnectProfileActive

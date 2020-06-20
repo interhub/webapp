@@ -9,7 +9,7 @@ import FolderIcon from "@material-ui/icons/Folder";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import { setScreen, setUser } from "../../../store/actions";
+import { setScreen, setUser } from "../store/actions";
 import { connect } from "react-redux";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
@@ -28,7 +28,9 @@ const ProfileInfo = ( {email, phone, department, city, user} ) => {
       <Typography style={{textAlign: 'left'}} variant={'h5'}>
         Мой профиль
       </Typography>
-
+      <Avatar src={{url: user.avatar ? user.avatar : undefined}}>
+        <AccountCircle/>
+      </Avatar>
       {/*<div>*/}
       {/*  <Typography style={{textAlign: 'left'}} variant={'body1'}>*/}
       {/*    Имя*/}
@@ -67,26 +69,23 @@ const ProfileInfo = ( {email, phone, department, city, user} ) => {
       <List component="nav" aria-label="main mailbox folders">
         <ListItem button>
           <ListItemIcon>
-            <Avatar src={{url: user.avatar ? user.avatar : undefined}}>
-              <AccountCircle/>
-            </Avatar>
-            {/*<InboxIcon/>*/}
+            <InboxIcon/>
           </ListItemIcon>
-          <ListItemText primary={user.first_name + ' ' + user.second_name + ' ' + user.last_name}/>
+          <ListItemText primary={user.fullname}/>
         </ListItem>
         <Divider/>
         <ListItem button>
           <ListItemIcon>
             <DraftsIcon/>
           </ListItemIcon>
-          <ListItemText primary={user.department}/>
+          <ListItemText primary={user.phone}/>
         </ListItem>
         <Divider/>
         <ListItem button>
           <ListItemIcon>
             <InboxIcon/>
           </ListItemIcon>
-          <ListItemText primary={user.email}/>
+          <ListItemText primary={user.job}/>
         </ListItem>
         <Divider/>
         <ListItem button>
@@ -100,8 +99,7 @@ const ProfileInfo = ( {email, phone, department, city, user} ) => {
 
 
     </div>
-  )
-    ;
+  );
 }
 
 

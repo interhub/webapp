@@ -193,7 +193,8 @@ function Nav( {setScreen} ) {
             <MyTabs/>
           </div>
           <div>
-            <Button style={{marginLeft: 20, height: 45}} onClick={() => setScreen(ADD_IDEA)} variant="contained">
+            <Button size="small" style={{marginLeft: 20, height: 45, fontSize: 10}} onClick={() => setScreen(ADD_IDEA)}
+                    variant="contained">
               Добавить идею
             </Button>
           </div>

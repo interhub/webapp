@@ -18,11 +18,12 @@ import { setUser } from "./store/actions";
 const App = ( {screen, back, setUser} ) => {
 
   const getData = () => {
-    fetch(location + '/user')
+    fetch(location + '/user/get_user')
     .then(res => res.json())
     .then(res => {
+      console.log(res, 'res user')
       if (res.result === true) {
-        setUser(res.user)
+        setUser(res.data)
       } else {
 
       }
