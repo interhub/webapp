@@ -1,6 +1,6 @@
 import {
   SET_BACK,
-  SET_SCREEN,
+  SET_SCREEN, SET_USER,
 } from './actionNames';
 
 export const setScreen = (screenName) => {
@@ -17,3 +17,10 @@ export const setBack = (bool) => {
   };
 };
 
+export const setUser = (user) => {
+  return {
+    // eslint-disable-next-line no-undef
+    type: SET_USER,
+    user: user
+  };
+};

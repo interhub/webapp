@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { PROFILE, MAIN_PAGE, ADD_IDEA, GROUPS } from '../store/screenNames'
 import { setScreen } from "../store/actions";
+import Button from "@material-ui/core/Button";
+import ExiteIcon from '@material-ui/icons/Menu'
 
 
 function TabPanel( props ) {
@@ -67,6 +69,10 @@ function MyTabs( {setScreen, screen} ) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  const openMain=()=>{
+    setScreen(MAIN_PAGE);
+  }
+
   const handleChange = ( event, newValue ) => {
     switch (newValue) {
       case 0:
@@ -97,82 +103,27 @@ function MyTabs( {setScreen, screen} ) {
   }
 
   return (
-    <Tabs
-      value={getValueNyScreen(screen)} onChange={handleChange}
-      variant="fullWidth"
-      aria-label="nav tabs example"
-    >
-      <LinkTab label="Главная" {...a11yProps(0)} />
-      <LinkTab label="Профиль" {...a11yProps(1)} />
-      <LinkTab label="Последние новости" {...a11yProps(2)} />
-    </Tabs>
+    <div>
+      {(screen === MAIN_PAGE || screen === PROFILE || screen === GROUPS) &&
+      <Tabs
+        value={getValueNyScreen(screen)} onChange={handleChange}
+        variant="fullWidth"
+        aria-label="nav tabs example"
+      >
+        <LinkTab label="Главная" {...a11yProps(0)} />
+        <LinkTab label="Профиль" {...a11yProps(1)} />
+        <LinkTab label="Последние новости" {...a11yProps(2)} />
+      </Tabs>
+      }
+      {!(screen === MAIN_PAGE || screen === PROFILE || screen === GROUPS) &&
+      <Button onClick={() => setScreen(MAIN_PAGE)} style={{color: 'white', height: 45, marginLeft: 5}}
+              startIcon={<ExiteIcon/>} variant="outlined">На
+        главную</Button>}
+    </div>
 
-  );
+  )
+    ;
 }
-
-//
-// const StyledTabs = withStyles({
-//   indicator: {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     backgroundColor: 'transparent',
-//     '& > span': {
-//       maxWidth: 40,
-//       width: '100%',
-//       backgroundColor: '#635ee7',
-//     },
-//   },
-// })(( props ) => <Tabs {...props} TabIndicatorProps={{children: <span/>}}/>);
-//
-// const StyledTab = withStyles(( theme ) => ({
-//   root: {
-//     textTransform: 'none',
-//     color: '#fff',
-//     fontWeight: theme.typography.fontWeightRegular,
-//     fontSize: theme.typography.pxToRem(15),
-//     marginRight: theme.spacing(1),
-//     '&:focus': {
-//       opacity: 1,
-//     },
-//   },
-// }))(( props ) => <Tab disableRipple {...props} />);
-//
-// function MyTabs( {screen, setScreen} ) {
-//   const [value, setValue] = React.useState(0);
-//
-//   const handleChange = ( event, newValue ) => {
-//     switch (newValue) {
-//       case 0:
-//         setScreen(MAIN_PAGE);
-//         break
-//       case 1:
-//         setScreen(PROFILE);
-//         break
-//       case 2:
-//         setScreen(GROUPS);
-//         break
-//       default :
-//         setScreen(MAIN_PAGE);
-//     }
-//   };
-//
-//   const getValueNyScreen = ( scr ) => {
-//     switch (scr) {
-//       case MAIN_PAGE:
-//         return 0
-//       case PROFILE:
-//         return 1;
-//       case GROUPS:
-//         return 2
-//       default :
-//         return 0
-//     }
-//   }
-//
-//   return (
-//     <StyledTabs style={{maxWidth: 300}} value={getValueNyScreen(screen)} onChange={handleChange}>
-//       <StyledTa//   );
-// }
 
 
 const mstp = ( state ) => {
