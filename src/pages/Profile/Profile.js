@@ -22,7 +22,7 @@ const Profile = ( {screen} ) => {
   }, [])
   return (
 
-    <div>
+    <div style={{minHeight:'100vh'}}>
       <ProfileAll />
     </div>
   );

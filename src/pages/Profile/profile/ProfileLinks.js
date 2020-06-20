@@ -1,27 +1,32 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
+import Avatar from "@material-ui/core/Avatar";
+import FolderIcon from '@material-ui/icons/Folder';
+import IconButton from "@material-ui/core/IconButton";
 
 /*СТРАНИЦА ПРОФИЛЯ КОМПОНЕНТ СО ССЫЛКАМИ СЛЕВА*/
 
+
 function ProfileLinks() {
-    let html =
-        <div className="ProfileLinks">
-            <div className="all_links">
-                <div className="block_line_head">Блок 1</div>
-                <ul className="block_link">
-                    <li className="one_block_line"><div className="circle_link"></div><a>Ссылка 1</a></li>
-                    <li className="one_block_line"><div className="circle_link"></div><a>Ссылка 2</a></li>
-                    <li className="one_block_line"><div className="circle_link"></div><a>Ссылка 3</a></li>
-                </ul>
-                <p></p>
-                <div className="block_line_head">Блок 2</div>
-                <ul className="block_link">
-                    <li className="one_block_line"><div className="circle_link"></div><a>Ссылка 1</a></li>
-                    <li className="one_block_line"><div className="circle_link"></div><a>Ссылка 2</a></li>
-                    <li className="one_block_line"><div className="circle_link"></div><a>Ссылка 3</a></li>
-                </ul>
-            </div>
-        </div>
-    return html;
+
+  const mass = new Array(7).fill(1)
+
+  return <div className="ProfileLinks">
+    <div className="all_links">
+      <Typography variant={'h5'} className="block_line_head">Заметки</Typography>
+
+      {mass.map(( el, i ) => {
+        return (<IconButton className="one_block_line">
+          <Avatar>
+            <FolderIcon/>
+          </Avatar>
+          <Typography variant={'body1'}>
+            Ссылка 1
+          </Typography>
+        </IconButton>)
+      })}
+    </div>
+  </div>
 }
 
 export default ProfileLinks;
