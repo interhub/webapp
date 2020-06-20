@@ -12,10 +12,10 @@ export default function DisabledTabs() {
 
   return (
     // <Paper square>
-    <Tabs
+    <Tabs className="ProfileTabs"
       value={value}
-      indicatorColor="primary"
-      textColor="primary"
+      indicatorColor="#262C40"
+      textColor="#262C40"
       onChange={handleChange}
       aria-label="disabled tabs example"
     >

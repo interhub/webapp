@@ -73,6 +73,7 @@ ul.block_link {
   font-style: normal;
   font-weight: normal;
   font-size: 14px!important;
+  width: max-content;
 }
 .ProfileLinks .MuiTypography-body1 {
   font-size: 14px!important;
@@ -97,6 +98,20 @@ ul.block_link {
 
 .ProfileInfo{
   padding: 3% 0 0 2%;
+}
+
+.ProfileTabs .MuiTab-root{
+  font-size: 14px!important;
+}
+
+.ProfileHeader h4{
+  font-family: Proxima Nova;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 28px;
+  color: #262C40;
+  padding-top: 3%;
 }
 
 /*scroll tags line*/
