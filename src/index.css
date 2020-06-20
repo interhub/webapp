@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: 'Proxima Nova',  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 1000px;
@@ -76,7 +74,6 @@ ul.block_link {
   font-style: normal;
   font-weight: normal;
   font-size: 14px!important;
-  width: max-content;
   background-color: #EAEAEA;
   min-height: 100vh;
 }
@@ -252,4 +249,38 @@ ul.block_link {
 
 .LNRating{
   margin-top: 10%;
+}
+
+/*поправка цветов*/
+.MuiPaper-elevation4 {
+  box-shadow: none!important;
+}
+
+.MuiAppBar-colorPrimary {
+  color: #fff;
+  background: linear-gradient(45deg, #0057B6, #0D356C);
+}
+
+.PrivateTabIndicator-colorSecondary-13, .MuiBadge-colorSecondary{
+  background-color: #C84F4F!important;
+}
+
+.MuiButton-contained {
+  background-color: white!important;
+}
+
+.MuiInputBase-input {
+  font: small-caption!important;
+}
+
+.MuiTypography-h4 {
+  font-family: Proxima Nova!important;
+}
+
+.MuiButton-containedSizeSmall {
+  padding: 4px 20px!important;
+}
+
+.MuiButton-contained{
+  box-shadow: none!important;
 }

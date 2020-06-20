@@ -46,7 +46,7 @@ function IdeasGroup({id, name, ideas, comments, rel}) {
             <CardHeader
                 avatar={
                     <Avatar>
-                        R
+                        A
                     </Avatar>
                 }
                 title={name}
@@ -79,4 +79,4 @@ function IdeasGroup({id, name, ideas, comments, rel}) {
 
 }
 
-export default
+export default IdeasGroup;

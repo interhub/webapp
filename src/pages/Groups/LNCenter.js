@@ -1,4 +1,5 @@
 import React from "react";
+import IdeasGroup from "../../components/IdeasGroup";
 
 
 
@@ -7,7 +8,7 @@ import React from "react";
 function LNCenter() {
     return(
         <div className="LNCenter">
-
+            <IdeasGroup />
         </div>
     )
 

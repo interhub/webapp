@@ -186,14 +186,14 @@ function Nav( {setScreen} ) {
           </IconButton>
           <div>
             <Typography style={{textTransform: 'uppercase'}} className={classes.title} variant="h6" noWrap>
-              Газпром BEST IDEA
+              BEST IDEAS
             </Typography>
           </div>
           <div>
             <MyTabs/>
           </div>
           <div>
-            <Button size="small" style={{marginLeft: 20, height: 45, fontSize: 10}} onClick={() => setScreen(ADD_IDEA)}
+            <Button size="small" style={{marginLeft: 20, height: 30, fontSize: 14}} onClick={() => setScreen(ADD_IDEA)}
                     variant="contained">
               Добавить идею
             </Button>
