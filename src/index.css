@@ -202,3 +202,53 @@ ul.block_link {
   display: flex;
   flex-direction: column;
 }
+
+.LNProfileFew_avaname{
+  display: flex;
+  flex-direction: row;
+}
+
+.LNProfileFew_points{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: Proxima Nova!important;
+  font-style: normal;
+  font-weight: normal;
+  color: #262C40;
+  font-size: 14px!important;
+  padding-top: 30px;
+}
+
+.LNProfileFew_ava{
+
+}
+
+.LNProfileFew_name{
+  padding-left: 5%!important;
+  font-size: 16px;
+  line-height: 30px!important;
+  font-family: Proxima Nova!important;
+  font-style: normal;
+  font-weight: normal;
+  text-align: left;
+  color: black;
+}
+
+.LNRight{
+  padding: 3% 0 0 2%;
+}
+
+.LNProfileFew_head{
+  font-family: Proxima Nova!important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px!important;
+  text-align: left;
+  color: #262C40;
+  margin-bottom: 10%;
+}
+
+.LNRating{
+  margin-top: 10%;
+}

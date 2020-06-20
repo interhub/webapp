@@ -5,7 +5,7 @@ import rait from "./images/Group 553.png"
 
 function LNRating() {
     return(
-        <div><img src={rait}/></div>
+        <div className="LNRating"><img src={rait}/></div>
     )
 }
 
