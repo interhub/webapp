@@ -22,17 +22,25 @@ export default function ChipsArray( {tags, setTags} ) {
   const classes = useStyles();
 
 
-  const handleDelete = ( chipToDelete ) => () => {
-    setTags(( chips ) => chips.filter(( chip ) => chip.key !== chipToDelete.key));
+  const handleDelete = ( num ) => {
+    let items = [...tags];
+    items.splice(num, 1)
+    setTags(items);
   };
+
+  const getRandomByArray = ( mass ) => {
+    let i = mass.length;
+    return Math.floor(Math.random() * i)
+  }
+
 
   return (
     // <Paper component="ul" className={classes.root}>
-    <div  className={classes.root}>
+    <div className={classes.root}>
       {tags.map(( el, i ) => {
         let icon;
 
-        if (i === 1) {
+        if (i === getRandomByArray(tags)) {
           icon = <TagFacesIcon/>;
         }
 
@@ -41,7 +49,7 @@ export default function ChipsArray( {tags, setTags} ) {
             <Chip
               icon={icon}
               label={el}
-              onDelete={() => handleDelete(el)}
+              onDelete={() => handleDelete(i)}
               className={classes.chip}
             />
           </li>
