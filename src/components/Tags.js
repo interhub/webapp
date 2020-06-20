@@ -9,29 +9,14 @@ import { setScreen } from "../store/actions";
 import { GROUP } from '../store/screenNames'
 
 
-const Tags = ( {screen, tags, setScreen} ) => {
+const Tags = ( {screen, tags, setScreen, getGroupByTag} ) => {
 
-
-  const getData = ( tag ) => {
-
-    setScreen(GROUP)
-
-    // fetch(location + '/user')
-    // .then(res => res.json())
-    // .then(res => {
-    //   if (res.result === true) {
-    //
-    //   } else {
-    //
-    //   }
-    // })
-  }
 
   return (
     <List className={'tags scrollbar'} id={'style-6'} style={{maxHeight: '100%', overflowX: 'scroll', display: 'flex'}}>
       {tags.map(( tag, i ) => {
         return <ListItem
-          onClick={() => getData(tag)}
+          onClick={() => getGroupByTag(tag)}
           style={{backgroundColor: '#EEF1F3', marginRight: 20, whiteSpace: 'nowrap', cursor: 'pointer'}}
           primaryText={tag}
           secondaryText="bar1">{tag}</ListItem>

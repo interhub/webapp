@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import state from './state';
 import {
-  SET_BACK,
+  SET_BACK, SET_GROUP,
   SET_SCREEN, SET_USER,
 } from './actionNames';
 
@@ -14,6 +14,8 @@ const reducer = ( state, action ) => {
       return {...state, back: action.back};
     case SET_USER:
       return {...state, user: action.user};
+    case SET_GROUP:
+      return {...state, group: action.group};
     default:
       return {...state};
   }

@@ -6,9 +6,12 @@ import Tags from "../../components/Tags";
 import Typography from "@material-ui/core/Typography";
 import TabSort from "./TabSort";
 import Idea from "../../components/Idea";
+import { setGroup, setScreen } from "../../store/actions";
+import { GROUP } from '../../store/screenNames'
+
 // import ProfileLinks from "../../../components/ProfileLinks";
 
-const AddIdea = ( {screen} ) => {
+const Main = ( {screen, setScreen, setGroup} ) => {
 
   let [ideas, setIdeas] = useState(new Array(25).fill(1).map(() => ({
     id: '',
@@ -31,12 +34,59 @@ const AddIdea = ( {screen} ) => {
     .then(res => res.json())
     .then(res => {
       if (res.result === true) {
-
+        setIdeas(res.ideas)
       } else {
 
       }
     })
+    .catch(e => {
+      console.log(e, 'err get ideas')
+    })
   }
+
+  const getGroupByTag = ( tag ) => {
+
+    // return (() => {
+    //   setScreen(GROUP)
+    //   setGroup({
+    //     "id": 5,
+    //     "name": "Группа пятая",
+    //     "ideas": [
+    //       {
+    //         "name": "Перестаньте открывать окна в помещении! ",
+    //         "id": 1,
+    //         "author_id": 7,
+    //         "text": "Дорогие коллеги, давайте перестанем открывать окна в помещении. Да, у нас топят очень сильно, и у нас периодически душно, но открывать нараспашку окна, когда на улице -30!!! Это неблагоприятно влияет на здоровье ваших товарищей, а соответственно и на вас! Давайте будем уважительными и купим вентилятор ",
+    //         "tags": []
+    //       }
+    //     ],
+    //     "rel_text": "Дорогие коллеги, давайте перестанем открывать окна в помещении. Да, у нас топят очень сильно, и у нас периодически душно, но открывать нараспашку окна, когда на улице -30!!! Это неблагоприятно влияет на здоровье ваших товарищей, а соответственно и на вас! Давайте будем уважительными и купим вентилятор "
+    //   })
+    // })()
+
+    fetch(location + '/idea/get_group_by_tag', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({tag})
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res, 'res tag')
+      if (res.result === true) {
+        setScreen(GROUP)
+        setGroup(res.group)
+      } else {
+
+      }
+    })
+    .catch(( e ) => {
+      console.log(e, 'err send tag')
+    })
+  }
+
 
   const like = ( id ) => {
     console.log(id, 'ids')
@@ -56,12 +106,12 @@ const AddIdea = ( {screen} ) => {
 
     <div>
       <Typography variant="h4" style={{textAlign: 'left', padding: 10}}>Идеи</Typography>
-      <Tags/>
+      <Tags getGroupByTag={getGroupByTag}/>
       <TabSort/>
       <div>
         <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
           {ideas.map(( idea, i ) => {
-            return <Idea {...idea} num={i} key={i} like={like}/>
+            return <Idea getGroupByTag={getGroupByTag} {...idea} num={i} key={i} like={like}/>
           })}
         </div>
       </div>
@@ -74,10 +124,11 @@ const mstp = ( state ) => {
     screen: state.screen
   }
 }
-const mdtp = ( dispatch ) => {
-  return {}
+const mdtp = {
+  setScreen,
+  setGroup
 }
 
-const ConnectAddIdea = connect(mstp, mdtp)(AddIdea)
+const ConnectMain = connect(mstp, mdtp)(Main)
 
-export default ConnectAddIdea;
+export default ConnectMain;

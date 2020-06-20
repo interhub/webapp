@@ -7,26 +7,25 @@ import { setUser } from "../../store/actions";
 
 const AddIdea = ( {screen} ) => {
 
-  const getData = () => {
-    fetch(location + '/user')
-    .then(res => res.json())
-    .then(res => {
-      if (res.result === true) {
-
-      } else {
-
-      }
-    })
+  const getData = (txt => {
+    console.log(txt)
+    // fetch(location + '/user')
+    // .then(res => res.json())
+    // .then(res => {
+    //   if (res.result === true) {
+    //
+    //   } else {
+    //
+    //   }
+    // })
   }
 
-  useEffect(() => {
-    getData()
-  }, [])
   return (
 
     <div>
       <div style={{padding: 20}}>
         <TextField
+          onInput={( txt ) => getData(txt)}
           fullWidth
           id="outlined-multiline-static"
           label="Введите свою идею"
