@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import location from '../../varibles/location'
+import LNAll from "./LNAll";
 
 const Group = ( {screen} ) => {
 
@@ -21,9 +22,9 @@ const Group = ( {screen} ) => {
   }, [])
   return (
 
-    <div>
-      Группы идей
-    </div>
+      <div style={{minHeight:'100vh'}}>
+        <LNAll />
+      </div>
   );
 }
 
