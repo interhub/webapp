@@ -4,6 +4,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import logo1 from "../images/group600.png"
 
 /*Страница профиля, правая часть, рыбка*/
 
@@ -43,13 +44,11 @@ const ProfileAll = ( {email, phone, department, city} ) => {
 }
 
 function ProfileInfo() {
-  return (<div className="ProfileInfo">
-    <div>Персональная информация</div>
-    <ProfileMin/>
-    <ProfileAll
+  return       <div className="ProfileInfo">
 
-    />
-  </div>)
+      <img src={logo1} />
+
+  </div>
 }
 
 export default ProfileInfo;
