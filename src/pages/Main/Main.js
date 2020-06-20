@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import location from '../../varibles/location'
+import Tags from "../../components/Tags";
+import Typography from "@material-ui/core/Typography";
+import TabSort from "./TabSort";
 
 const AddIdea = ( {screen} ) => {
 
@@ -21,7 +24,9 @@ const AddIdea = ( {screen} ) => {
   }, [])
   return (
     <div>
-      Главная страница
+      <Typography variant="h4" style={{textAlign: 'left'}}>Идеи</Typography>
+      <Tags/>
+      <TabSort />
     </div>
   );
 }

@@ -15,28 +15,29 @@ code {
 
 /*ПРОФИЛЬ*/
 
-.ProfileLinks{
+.ProfileLinks {
   background-color: #EAEAEA;
   height: 100%;
   padding: 2%;
   width: 10%;
 }
-.ProfileInfo{
+
+.ProfileInfo {
   background-color: #EAEAEA;
 }
 
-.ProfileAll{
+.ProfileAll {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 100%;
 }
 
-ul.block_link{
+ul.block_link {
   list-style: none;
 }
 
-.circle_link{
+.circle_link {
   width: 24px;
   height: 24px;
   background: #C4C4C4;
@@ -44,7 +45,7 @@ ul.block_link{
   margin-right: 10px;
 }
 
-.one_block_line{
+.one_block_line {
   display: flex;
   flex-direction: row;
   /* margin-top: 20px; */
@@ -57,7 +58,7 @@ ul.block_link{
   line-height: 25px;
 }
 
-.block_line_head{
+.block_line_head {
   font-family: Proxima Nova;
   font-style: normal;
   font-weight: bold;
@@ -65,3 +66,19 @@ ul.block_link{
   line-height: 24px;
   color: #262C40;
 }
+
+
+/*scroll tags line*/
+#style-6::-webkit-scrollbar-thumb
+{
+  background-color: #F90;
+  background-image: -webkit-linear-gradient(45deg,
+  rgba(255, 255, 255, .2) 25%,
+  transparent 25%,
+  transparent 50%,
+  rgba(255, 255, 255, .2) 50%,
+  rgba(255, 255, 255, .2) 75%,
+  transparent 75%,
+  transparent)
+}
+
