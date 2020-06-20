@@ -7,17 +7,36 @@ import { setUser } from "../../store/actions";
 
 const AddIdea = ( {screen} ) => {
 
-  const getData = (txt => {
-    console.log(txt)
-    // fetch(location + '/user')
-    // .then(res => res.json())
-    // .then(res => {
-    //   if (res.result === true) {
-    //
-    //   } else {
-    //
-    //   }
-    // })
+
+  const getData = ( text ) => {
+    let words = text.split(' ');
+    if (words.length > 1) {
+      send()
+    }
+
+    function send() {
+      fetch(location + '/idea/get_relevant_ideas', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({text})
+      })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res, 'res input idea')
+        if (res.result === true) {
+
+        } else {
+
+        }
+      })
+      .catch(( e ) => {
+        console.log(e, 'err input idea')
+      })
+    }
+
   }
 
   return (
@@ -25,7 +44,7 @@ const AddIdea = ( {screen} ) => {
     <div>
       <div style={{padding: 20}}>
         <TextField
-          onInput={( txt ) => getData(txt)}
+          onInput={( e ) => getData(e.target.value)}
           fullWidth
           id="outlined-multiline-static"
           label="Введите свою идею"
