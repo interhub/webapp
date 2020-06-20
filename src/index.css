@@ -237,7 +237,7 @@ ul.block_link {
   padding: 3% 0 0 2%;
 }
 
-.LNProfileFew_head{
+.LNProfileFew_head, .MuiTypography-h5{
   font-family: Proxima Nova!important;
   font-style: normal;
   font-weight: bold;
@@ -245,6 +245,27 @@ ul.block_link {
   text-align: left;
   color: #262C40;
   margin-bottom: 10%;
+}
+
+.MuiTypography-h4{
+  font-family: Proxima Nova!important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px!important;
+  text-align: left;
+  color: #262C40;
+}
+
+.MuiTypography-body1 {
+  font-size: 14px!important;
+}
+
+.MuiTab-textColorPrimary.Mui-selected, .MuiFormLabel-root.Mui-focused {
+  color: #508BE2!important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+  border-color: #0D356C!important;
 }
 
 .LNRating{
@@ -283,4 +304,8 @@ ul.block_link {
 
 .MuiButton-contained{
   box-shadow: none!important;
+}
+
+.MuiTab-root, .MuiTypography-root{
+  font-family: Proxima Nova!important;
 }

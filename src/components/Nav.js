@@ -186,7 +186,7 @@ function Nav( {setScreen} ) {
           </IconButton>
           <div>
             <Typography style={{textTransform: 'uppercase'}} className={classes.title} variant="h6" noWrap>
-              BEST IDEAS
+              IDEA SHARE
             </Typography>
           </div>
           <div>

@@ -117,7 +117,7 @@ function MyTabs( {setScreen, screen} ) {
       }
       {!(screen === MAIN_PAGE || screen === PROFILE || screen === GROUPS) &&
       <Button size="small" onClick={() => setScreen(MAIN_PAGE)}
-              style={{color: 'white', height: 45, marginLeft: 5, fontSize: 10}}
+              style={{color: 'white', height: 33, fontSize: 14, paddingLeft: 16, paddingRight: 16, marginLeft: 20}}
               startIcon={<ExiteIcon/>} variant="outlined">На
         главную</Button>}
     </div>

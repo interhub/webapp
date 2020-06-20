@@ -26,7 +26,7 @@ const ProfileInfo = ( {email, phone, department, city, user} ) => {
   return (
     <div className={'ProfileInfo'}>
       <Typography style={{textAlign: 'left'}} variant={'h5'}>
-        Мой профиль
+        Персональная информация
       </Typography>
 
       {/*<div>*/}
