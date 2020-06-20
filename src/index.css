@@ -15,15 +15,15 @@ code {
 
 /*ПРОФИЛЬ*/
 
-.ProfileLinks {
+.ProfileLinks, .ProfileInfo {
   background-color: #EAEAEA;
   min-height: 100vh;
   width: 210px;
+  padding: 5px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
-.ProfileInfo {
-  background-color: #EAEAEA;
-}
 
 .ProfileAll {
   display: flex;

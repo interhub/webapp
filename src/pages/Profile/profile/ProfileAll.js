@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileInfo from "./ProfileInfo";
-import ProfileLinks from "./ProfileLinks";
+import ProfileLinks from "../../../components/ProfileLinks";
 import ProfileActive from "./ProfileActive";
 
 /*ОСНОВНАЯ СТРАНИЦА ПРОФИЛЯ*/

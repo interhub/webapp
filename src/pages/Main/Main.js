@@ -6,11 +6,13 @@ import Tags from "../../components/Tags";
 import Typography from "@material-ui/core/Typography";
 import TabSort from "./TabSort";
 import Idea from "../../components/Idea";
+// import ProfileLinks from "../../../components/ProfileLinks";
 
 const AddIdea = ( {screen} ) => {
 
   let [ideas, setIdeas] = useState(new Array(25).fill(1).map(() => ({
     id: '',
+    groupId: '',
     author: {},
     tags: ['Отдых', 'Здоровье', 'Веселье', 'Танцы'],
     name: 'Моя новая идея',
@@ -51,8 +53,9 @@ const AddIdea = ( {screen} ) => {
     getData()
   }, [])
   return (
+
     <div>
-      <Typography variant="h4" style={{textAlign: 'left'}}>Идеи</Typography>
+      <Typography variant="h4" style={{textAlign: 'left', padding: 10}}>Идеи</Typography>
       <Tags/>
       <TabSort/>
       <div>
@@ -76,6 +79,5 @@ const mdtp = ( dispatch ) => {
 }
 
 const ConnectAddIdea = connect(mstp, mdtp)(AddIdea)
-
 
 export default ConnectAddIdea;
