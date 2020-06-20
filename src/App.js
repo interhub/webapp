@@ -12,16 +12,17 @@ import Profile from "./pages/Profile/Profile";
 import Group from "./pages/Group/Group";
 import Groups from "./pages/Groups/Groups";
 import Backdrop from "@material-ui/core/Backdrop";
+import $ from 'jquery';
+import { setUser } from "./store/actions";
 
-
-const App = ( {screen, back} ) => {
+const App = ( {screen, back, setUser} ) => {
 
   const getData = () => {
     fetch(location + '/user')
     .then(res => res.json())
     .then(res => {
       if (res.result === true) {
-
+        setUser(res.user)
       } else {
 
       }
@@ -31,12 +32,15 @@ const App = ( {screen, back} ) => {
   useEffect(() => {
     getData()
   }, [])
+  useEffect(() => {
+    $("html, body").animate({scrollTop: 0}, 500, 'swing')
+  }, [screen])
   return (
 
     <div className="App">
       <Nav/>
-      <AddBtn/>
       <Backdrop open={back}/>
+      <AddBtn/>
       {screen === MAIN_PAGE && <Main/>}
       {screen === PROFILE && <Profile/>}
       {screen === ADD_IDEA && <AddIdea/>}
@@ -52,8 +56,8 @@ const mstp = ( state ) => {
     back: state.back
   }
 }
-const mdtp = ( dispatch ) => {
-  return {}
+const mdtp = {
+  setUser
 }
 
 const ConnectApp = connect(mstp, mdtp)(App)

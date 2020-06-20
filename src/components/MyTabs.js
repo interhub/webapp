@@ -1,39 +1,77 @@
 import { connect } from "react-redux";
-import React, { useEffect } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { MAIN_PAGE, GROUPS, PROFILE, ADD_IDEA } from '../store/screenNames'
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { PROFILE, MAIN_PAGE, ADD_IDEA, GROUPS } from '../store/screenNames'
 import { setScreen } from "../store/actions";
+import Button from "@material-ui/core/Button";
+import ExiteIcon from '@material-ui/icons/Menu'
 
-const StyledTabs = withStyles({
-  indicator: {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    '& > span': {
-      maxWidth: 40,
-      width: '100%',
-      backgroundColor: '#635ee7',
-    },
-  },
-})(( props ) => <Tabs {...props} TabIndicatorProps={{children: <span/>}}/>);
 
-const StyledTab = withStyles(( theme ) => ({
+function TabPanel( props ) {
+  const {children, value, index, ...other} = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`nav-tabpanel-${index}`}
+      aria-labelledby={`nav-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps( index ) {
+  return {
+    id: `nav-tab-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
+  };
+}
+
+function LinkTab( props ) {
+  return (
+    <Tab
+      component="a"
+      onClick={( event ) => {
+        event.preventDefault();
+      }}
+      {...props}
+    />
+  );
+}
+
+const useStyles = makeStyles(( theme ) => ({
   root: {
-    textTransform: 'none',
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightRegular,
-    fontSize: theme.typography.pxToRem(15),
-    marginRight: theme.spacing(1),
-    '&:focus': {
-      opacity: 1,
-    },
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
   },
-}))(( props ) => <Tab disableRipple {...props} />);
+}));
 
-function MyTabs( {screen, setScreen} ) {
+function MyTabs( {setScreen, screen} ) {
+  const classes = useStyles();
   const [value, setValue] = React.useState(0);
+
+  const openMain=()=>{
+    setScreen(MAIN_PAGE);
+  }
 
   const handleChange = ( event, newValue ) => {
     switch (newValue) {
@@ -65,13 +103,28 @@ function MyTabs( {screen, setScreen} ) {
   }
 
   return (
-    <StyledTabs  value={getValueNyScreen(screen)} onChange={handleChange} aria-label="styled tabs example">
-      <StyledTab label="Главная"/>
-      <StyledTab label="Профиль"/>
-      <StyledTab label="Последние новости"/>
-    </StyledTabs>
-  );
+    <div>
+      {(screen === MAIN_PAGE || screen === PROFILE || screen === GROUPS) &&
+      <Tabs
+        value={getValueNyScreen(screen)} onChange={handleChange}
+        variant="fullWidth"
+        aria-label="nav tabs example"
+      >
+        <LinkTab label="Главная" {...a11yProps(0)} />
+        <LinkTab label="Профиль" {...a11yProps(1)} />
+        <LinkTab label="Последние новости" {...a11yProps(2)} />
+      </Tabs>
+      }
+      {!(screen === MAIN_PAGE || screen === PROFILE || screen === GROUPS) &&
+      <Button onClick={() => setScreen(MAIN_PAGE)} style={{color: 'white', height: 45, marginLeft: 5}}
+              startIcon={<ExiteIcon/>} variant="outlined">На
+        главную</Button>}
+    </div>
+
+  )
+    ;
 }
+
 
 const mstp = ( state ) => {
   return {

@@ -1,38 +1,53 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
-import location from '../../varibles/location'
+import location from '../varibles/location'
+import List from "@material-ui/core/List";
+import Paper from "@material-ui/core/Paper";
+import ListItem from "@material-ui/core/ListItem";
+import ScrollMenu from 'react-horizontal-scrolling-menu'
+import { setScreen } from "../store/actions";
+import { GROUP } from '../store/screenNames'
 
-const Tags = ( {screen} ) => {
 
-  const getData = () => {
-    fetch(location + '/user')
-    .then(res => res.json())
-    .then(res => {
-      if (res.result === true) {
+const Tags = ( {screen, tags, setScreen} ) => {
 
-      } else {
 
-      }
-    })
+  const getData = ( tag ) => {
+
+    setScreen(GROUP)
+
+    // fetch(location + '/user')
+    // .then(res => res.json())
+    // .then(res => {
+    //   if (res.result === true) {
+    //
+    //   } else {
+    //
+    //   }
+    // })
   }
 
-  useEffect(() => {
-    getData()
-  }, [])
   return (
-    <div style={{backgroundColor: 'red'}}>
-      Теги
-    </div>
+    <List className={'tags scrollbar'} id={'style-6'} style={{maxHeight: '100%', overflowX: 'scroll', display: 'flex'}}>
+      {tags.map(( tag, i ) => {
+        return <ListItem
+          onClick={() => getData(tag)}
+          style={{backgroundColor: '#EEF1F3', marginRight: 20, whiteSpace: 'nowrap', cursor: 'pointer'}}
+          primaryText={tag}
+          secondaryText="bar1">{tag}</ListItem>
+      })}
+    </List>
   );
 }
 
 const mstp = ( state ) => {
   return {
-    screen: state.screen
+    screen: state.screen,
+    tags: state.tags
   }
 }
-const mdtp = ( dispatch ) => {
-  return {}
+const mdtp = {
+  setScreen
 }
 
 const ConnectTags = connect(mstp, mdtp)(Tags)

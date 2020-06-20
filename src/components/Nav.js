@@ -18,6 +18,7 @@ import Avatar from "@material-ui/core/Avatar";
 import MyTabs from './MyTabs'
 import { setScreen } from "../store/actions";
 import { PROFILE, MAIN_PAGE, ADD_IDEA, GROUPS } from '../store/screenNames'
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(( theme ) => ({
   grow: {
@@ -183,10 +184,19 @@ function Nav( {setScreen} ) {
             <Avatar className={classes.small} onClick={() => setScreen(MAIN_PAGE)} alt="Remy Sharp"
                     src={require('../img/logo.png')}/>
           </IconButton>
-          <Typography style={{textTransform: 'uppercase'}} className={classes.title} variant="h6" noWrap>
-            Газпром BEST IDEAS
-          </Typography>
+          <div>
+            <Typography style={{textTransform: 'uppercase'}} className={classes.title} variant="h6" noWrap>
+              Газпром BEST IDEA
+            </Typography>
+          </div>
+          <div>
             <MyTabs/>
+          </div>
+          <div>
+            <Button style={{marginLeft: 20, height: 45}} onClick={() => setScreen(ADD_IDEA)} variant="contained">
+              Добавить идею
+            </Button>
+          </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon/>
@@ -200,7 +210,7 @@ function Nav( {setScreen} ) {
               inputProps={{'aria-label': 'search'}}
             />
           </div>
-          <div className={classes.grow}/>
+          {/*<div className={classes.grow}/>*/}
           <div className={classes.sectionDesktop}>
             {/*<IconButton aria-label="show 4 new mails" color="inherit">*/}
             {/*  <Badge badgeContent={4} color="secondary">*/}
