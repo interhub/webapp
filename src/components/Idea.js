@@ -20,6 +20,7 @@ import { setScreen } from "../store/actions";
 import { GROUP } from '../store/screenNames'
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
+import location from "../varibles/location";
 
 
 const useStyles = makeStyles(( theme ) => ({
@@ -46,13 +47,10 @@ const useStyles = makeStyles(( theme ) => ({
   },
 }));
 
-function Idea( {id, author, tags, name, text, rating, date, isLike = false, num, like, setScreen} ) {
+function Idea( {id, author, tags, name, text, rating, date, isLike = false, num, like, setScreen, getGroupByTag} ) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const sendData = ( tag ) => {
-    setScreen(GROUP)
-  };
   const copyIdea = ( text ) => {
     window.navigator.clipboard.writeText(text).then(function () {
       setOpen(true)
@@ -61,6 +59,7 @@ function Idea( {id, author, tags, name, text, rating, date, isLike = false, num,
       }, 2000)
     })
   }
+
 
   return (
     <Card style={{cursor: 'pointer'}} className={classes.root}>
@@ -71,7 +70,8 @@ function Idea( {id, author, tags, name, text, rating, date, isLike = false, num,
       </Snackbar>
       <CardHeader
         avatar={
-          <Avatar src={author.avatar ? author.avatar : undefined} aria-label="recipe" className={classes.avatar}>
+          <Avatar src={author?.avatar && author.avatar ? author.avatar : undefined} aria-label="recipe"
+                  className={classes.avatar}>
             R
           </Avatar>
         }
@@ -101,16 +101,8 @@ function Idea( {id, author, tags, name, text, rating, date, isLike = false, num,
         <IconButton onClick={() => copyIdea(text)} aria-label="share">
           <ShareIcon/>
         </IconButton>
-        {/*  className={clsx(classes.expand, {*/}
-        {/*    [classes.expandOpen]: expanded,*/}
-        {/*  })}*/}
-        {/*  onClick={handleExpandClick}*/}
-        {/*  aria-expanded={expanded}*/}
-        {/*  aria-label="show more"*/}
-        {/*>*/}
-        {/*  <ExpandMoreIcon/>*/}
         <div>
-          {tags.map(( el, i ) => <IconButton onClick={() => sendData(el)}><Typography
+          {tags.map(( el, i ) => <IconButton onClick={() => getGroupByTag(el)}><Typography
             variant={'body1'}>{el}</Typography></IconButton>)}
         </div>
       </CardActions>

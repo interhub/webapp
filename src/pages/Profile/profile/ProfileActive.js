@@ -17,7 +17,7 @@ function ProfileActive( {user} ) {
         {/*{ideas.map(( idea, i ) => {*/}
         {/*  return <Idea {...idea} num={i} key={i} like={like}/>*/}
         {/*})}*/}
-        {user.ideas.length == 0 && <Typography style={{marginTop: 30}} variant={'h4'}>
+        {user.ideas && user.ideas.length == 0 && <Typography style={{marginTop: 30}} variant={'h4'}>
           Впервые у нас? Создайте свое предложение!
         </Typography>}
       </div>
