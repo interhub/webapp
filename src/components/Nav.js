@@ -185,7 +185,8 @@ function Nav( {setScreen} ) {
                     src={require('../img/logo.png')}/>
           </IconButton>
           <div>
-            <Typography style={{textTransform: 'uppercase'}} className={classes.title} variant="h6" noWrap>
+            <Typography style={{textTransform: 'uppercase', paddingRight: 15}} className={classes.title} variant="h6"
+                        noWrap>
               Газпром BEST IDEA
             </Typography>
           </div>

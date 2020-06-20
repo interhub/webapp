@@ -112,7 +112,7 @@ function MyTabs( {setScreen, screen} ) {
       >
         <LinkTab style={{fontSize: 14}} label="Главная" {...a11yProps(0)} />
         <LinkTab style={{fontSize: 14}} label="Профиль" {...a11yProps(1)} />
-        <LinkTab style={{fontSize: 14}} label="Последние новости" {...a11yProps(2)} />
+        <LinkTab style={{fontSize: 14}} label="Группы" {...a11yProps(2)} />
       </Tabs>
       }
       {!(screen === MAIN_PAGE || screen === PROFILE || screen === GROUPS) &&

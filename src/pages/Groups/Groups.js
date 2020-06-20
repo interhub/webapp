@@ -16,9 +16,6 @@ const Group = ( {screen} ) => {
     })
   }
 
-  useEffect(() => {
-    getData()
-  }, [])
   return (
 
     <div>
