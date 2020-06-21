@@ -6,13 +6,18 @@ import Button from "@material-ui/core/Button";
 import { setGroup, setScreen, setUser } from "../../store/actions";
 import ListGroups from "./ListGroups";
 import Chips from "./Chips";
+import { GROUP } from '../../store/screenNames'
+import Alert from './Alert'
 
-const AddIdea = ( {screen, user, group} ) => {
+
+const AddIdea = ( {screen, user, group, setScreen, setGroup} ) => {
 
   let [list, setList] = useState([])
   let [active, setActive] = useState(0)
   let [tags, setTags] = useState([])
   let [idea, setIdea] = useState({name: '', text: ''})
+  let [alert, setAlert] = useState(false);
+
   // useEffect(() => {
   //   console.log(list, 'list')
   //
@@ -54,10 +59,11 @@ const AddIdea = ( {screen, user, group} ) => {
 
   }
 
+
   //отправка готового идеи
   const sendData = () => {
     let isNew = active < 0;
-    fetch(location + isNew ? '/idea/add_new_group' : '/idea/add_idea_to_group', {
+    fetch(location + (isNew ? '/idea/add_new_group' : '/idea/add_idea_to_group'), {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -75,7 +81,15 @@ const AddIdea = ( {screen, user, group} ) => {
     .then(res => {
       console.log(res, 'res new idea add')
       if (res.result) {
-
+        if (res.group) {
+          setGroup(res.group)
+        }
+        setAlert(true)
+        setTimeout(() => {
+            setScreen(GROUP)
+            setAlert(false)
+          }
+          , 2000)
       } else {
 
       }
@@ -89,6 +103,7 @@ const AddIdea = ( {screen, user, group} ) => {
   return (
 
     <div>
+      <Alert open={alert}/>
       <div style={{padding: 20}}>
         <TextField onInput={( e ) => setIdea({
           ...idea, name: e.target.value
