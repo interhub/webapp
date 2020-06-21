@@ -25,10 +25,11 @@ const AddIdea = ( {screen, user, group, setScreen, setGroup} ) => {
 
 
   const getData = ( text ) => {
-    let words = text.split(' ');
-    if (words.length > 1) {
-      gets()
-    }
+    // let words = text.split(' ');
+    // if (words.length > 1) {
+    gets()
+
+    // }
 
     function gets() {
       fetch(location + '/idea/get_relevant_ideas', {
@@ -62,7 +63,15 @@ const AddIdea = ( {screen, user, group, setScreen, setGroup} ) => {
 
   //отправка готового идеи
   const sendData = () => {
+
     let isNew = active < 0;
+    console.log({
+      group_id: isNew ? '' : group.id,
+      name: idea.name,
+      text: idea.text,
+      author_id: user.user_id,
+      tags
+    }, 'THIS ')
     fetch(location + (isNew ? '/idea/add_new_group' : '/idea/add_idea_to_group'), {
       method: 'post',
       headers: {
