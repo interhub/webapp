@@ -6,5 +6,6 @@ export default {
   back: false,
   tags: [],
   user: {},
-  group: {}
+  group: {},
+  tab: 4
 };

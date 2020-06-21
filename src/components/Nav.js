@@ -187,7 +187,7 @@ function Nav( {setScreen} ) {
           <div>
             <Typography style={{textTransform: 'uppercase', paddingRight: 15}} className={classes.title} variant="h6"
                         noWrap>
-              Газпром BEST IDEA
+              Газпром IDEA SHARING
             </Typography>
           </div>
           <div>

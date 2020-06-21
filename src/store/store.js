@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import state from './state';
 import {
   SET_BACK, SET_GROUP,
-  SET_SCREEN, SET_TAGS, SET_USER,
+  SET_SCREEN, SET_TAB, SET_TAGS, SET_USER,
 } from './actionNames';
 
 //red
@@ -18,6 +18,8 @@ const reducer = ( state, action ) => {
       return {...state, group: action.group};
     case SET_TAGS:
       return {...state, tags: action.tags};
+    case SET_TAB:
+      return {...state, tab: action.tab};
     default:
       return {...state};
   }

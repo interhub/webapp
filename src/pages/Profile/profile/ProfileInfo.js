@@ -26,7 +26,7 @@ const ProfileInfo = ( {email, phone, department, city, user} ) => {
   return (
     <div className={'ProfileInfo'}>
       <Typography style={{textAlign: 'left'}} variant={'h5'}>
-        Мой профиль
+        Персональная информация
       </Typography>
 
       {/*<div>*/}
@@ -67,7 +67,7 @@ const ProfileInfo = ( {email, phone, department, city, user} ) => {
       <List component="nav" aria-label="main mailbox folders">
         <ListItem button>
           <ListItemIcon>
-            <Avatar src={{url: user.avatar ? user.avatar : undefined}}>
+            <Avatar src={user.image ? user.image : undefined}>
               <AccountCircle/>
             </Avatar>
             {/*<InboxIcon/>*/}

@@ -38,7 +38,6 @@ const Main = ( {screen, setScreen, setGroup, setTags} ) => {
       if (res.result === true) {
         setTags(res.tags.map(el => el.name))
       } else {
-
       }
     })
     .catch(e => {

@@ -7,12 +7,13 @@ export default function DisabledTabs( {setIdeas, ideas} ) {
   const [value, setValue] = React.useState(2);
 
   const handleChange = ( event, newValue ) => {
+    let items = [...ideas]
+    let mass = [];
+    items.map(el => mass.unshift(el))
+    setIdeas(mass)
+    console.log(mass, 'reverse')
     setValue(newValue);
-
   };
-  useEffect(() => {
-    setIdeas(ideas.reverse())
-  }, [value])
 
   return (
     // <Paper square>

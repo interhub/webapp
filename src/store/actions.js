@@ -1,6 +1,6 @@
 import {
   SET_BACK, SET_GROUP,
-  SET_SCREEN, SET_TAGS, SET_USER,
+  SET_SCREEN, SET_TAB, SET_TAGS, SET_USER,
 } from './actionNames';
 
 export const setScreen = ( screenName ) => {
@@ -35,5 +35,12 @@ export const setTags = ( tags ) => {
   return {
     type: SET_TAGS,
     tags: tags
+  };
+};
+
+export const setTab = ( tab ) => {
+  return {
+    type: SET_TAB,
+    tab: tab
   };
 };
