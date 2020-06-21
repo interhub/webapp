@@ -30,6 +30,10 @@ function ListGroups( {list, setGroup, setActive, active} ) {
 
   const handleChange = ( num ) => {
     setActive(num);
+    if (num < 0) {
+      //если своя группа
+      return
+    }
     setGroup([...list][num])
   };
 
@@ -52,6 +56,26 @@ function ListGroups( {list, setGroup, setActive, active} ) {
           </ExpansionPanelDetails>
         </ExpansionPanel>
       })}
+
+      {/*// Добавить свою группу*/}
+      {list && list.length > 0 &&
+      < ExpansionPanel style={{backgroundColor: '#c3c3c36e',}} expanded={active === -1}
+                       onChange={() => handleChange(-1)}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon/>}
+        >
+          <Typography variant={'h6'} style={{textAlign: 'left'}} className={classes.heading}>
+            *Создать свою группу
+          </Typography>
+          <Typography
+            className={classes.secondaryHeading}>{active === -1 ? "Ваша идея будет добавлена в новую группу" : ""}</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            Вы можете создать свою группу идей. У вас есть единомышленники, которые вас поддержат!
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>}
     </div>
 
   );

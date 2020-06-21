@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
@@ -32,7 +32,11 @@ export default function ChipsArray( {tags, setTags} ) {
     let i = mass.length;
     return Math.floor(Math.random() * i)
   }
+  let [rand, setRand] = useState(0)
 
+  useEffect(() => {
+    setRand(getRandomByArray(tags))
+  }, [tags])
 
   return (
     // <Paper component="ul" className={classes.root}>
@@ -40,7 +44,7 @@ export default function ChipsArray( {tags, setTags} ) {
       {tags.map(( el, i ) => {
         let icon;
 
-        if (i === getRandomByArray(tags)) {
+        if (i === rand) {
           icon = <TagFacesIcon/>;
         }
 

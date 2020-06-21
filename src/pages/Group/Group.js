@@ -10,7 +10,10 @@ import Comments from "./Comments";
 const Group = ( {screen, group} ) => {
 
   let [comments, setComments] = useState(false)
-
+  let [, setUpdate] = useState(0)
+  const ForceUpdate = () => {
+    setUpdate(val => val++)
+  }
   const getGroupByTag = ( tag ) => {
     fetch(location + '/idea/get_group_by_tag', {
       method: 'post',
@@ -48,6 +51,10 @@ const Group = ( {screen, group} ) => {
       ]
     })
   }
+  //обновление для лайков
+  useEffect(() => {
+    ForceUpdate()
+  }, [group])
 
   return (
 

@@ -3,16 +3,16 @@ import { connect } from 'react-redux'
 import location from '../../varibles/location'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { setGroup, setUser } from "../../store/actions";
+import { setGroup, setScreen, setUser } from "../../store/actions";
 import ListGroups from "./ListGroups";
 import Chips from "./Chips";
 
-const AddIdea = ( {screen} ) => {
+const AddIdea = ( {screen, user, group} ) => {
 
   let [list, setList] = useState([])
   let [active, setActive] = useState(0)
   let [tags, setTags] = useState([])
-
+  let [idea, setIdea] = useState({name: '', text: ''})
   // useEffect(() => {
   //   console.log(list, 'list')
   //
@@ -22,10 +22,10 @@ const AddIdea = ( {screen} ) => {
   const getData = ( text ) => {
     let words = text.split(' ');
     if (words.length > 1) {
-      send()
+      gets()
     }
 
-    function send() {
+    function gets() {
       fetch(location + '/idea/get_relevant_ideas', {
         method: 'post',
         headers: {
@@ -54,12 +54,53 @@ const AddIdea = ( {screen} ) => {
 
   }
 
+  //отправка готового идеи
+  const sendData = () => {
+    let isNew = active < 0;
+    fetch(location + isNew ? '/idea/add_new_group' : '/idea/add_idea_to_group', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        group_id: isNew ? '' : group.id,
+        name: idea.name,
+        text: idea.text,
+        author_id: user.user_id,
+        tags
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res, 'res new idea add')
+      if (res.result) {
+
+      } else {
+
+      }
+    })
+    .catch(( e ) => {
+      console.log(e, 'err new idea add')
+    })
+
+  }
+
   return (
 
     <div>
       <div style={{padding: 20}}>
+        <TextField onInput={( e ) => setIdea({
+          ...idea, name: e.target.value
+        })} id="outlined-basic" label="Название идеи" variant="outlined" fullWidth
+                   style={{marginBottom: 20}}/>
         <TextField
-          onInput={( e ) => getData(e.target.value)}
+          onInput={( e ) => {
+            getData(e.target.value)
+            setIdea({
+              ...idea, text: e.target.value
+            })
+          }}
           fullWidth
           id="outlined-multiline-static"
           label="Введите свою идею"
@@ -74,7 +115,7 @@ const AddIdea = ( {screen} ) => {
       <Chips tags={tags} setTags={setTags}/>
       <div style={{padding: 20}}>
         <ListGroups list={list} active={active} setActive={setActive}/>
-        <Button variant="contained" style={{margin: 20}} color="primary">
+        <Button onClick={sendData} variant="contained" style={{margin: 20}} color="primary">
           Добавить
         </Button>
       </div>
@@ -85,11 +126,14 @@ const AddIdea = ( {screen} ) => {
 const mstp = ( state ) => {
   return {
     screen: state.screen,
-    user: state.user
+    user: state.user,
+    group: state.group
   }
 }
 const mdtp = {
-  setUser
+  setUser,
+  setScreen,
+  setGroup
 }
 
 const ConnectAddIdea = connect(mstp, mdtp)(AddIdea)

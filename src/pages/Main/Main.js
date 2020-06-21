@@ -6,29 +6,15 @@ import Tags from "../../components/Tags";
 import Typography from "@material-ui/core/Typography";
 import TabSort from "./TabSort";
 import Idea from "../../components/Idea";
-import { setGroup, setScreen } from "../../store/actions";
+import { setGroup, setScreen, setTags } from "../../store/actions";
 import { GROUP } from '../../store/screenNames'
 
 // import ProfileLinks from "../../../components/ProfileLinks";
 
-const Main = ( {screen, setScreen, setGroup} ) => {
+const Main = ( {screen, setScreen, setGroup, setTags} ) => {
 
-  let [ideas, setIdeas] = useState(new Array(25).fill(1).map(() => ({
-    id: '',
-    groupId: '',
-    author: {},
-    tags: ['Отдых', 'Здоровье', 'Веселье', 'Танцы'],
-    name: 'Моя новая идея',
-    text: ' Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high\n' +
-      '            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly\n' +
-      '            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken\n' +
-      '            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and\n' +
-      '            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add\n' +
-      '            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.',
-    rating: 1234,
-    date: '20 июня 2020 года'
-  })))
-
+  let [ideas, setIdeas] = useState([])
+  // GET_ALL_IDEAS
   const getData = () => {
     fetch(location + '/idea/get_top_ideas')
     .then(res => res.json())
@@ -43,6 +29,22 @@ const Main = ( {screen, setScreen, setGroup} ) => {
     .catch(e => {
       console.log(e, 'err get ideas')
     })
+
+    // GET TAGS
+    fetch(location + '/tag/get_tags_rating')
+    .then(res => res.json())
+    .then(res => {
+      console.log(res, 'res tags all (Main)')
+      if (res.result === true) {
+        setTags(res.tags.map(el => el.name))
+      } else {
+
+      }
+    })
+    .catch(e => {
+      console.log(e, 'err get ideas')
+    })
+
   }
 
   const getGroupByTag = ( tag ) => {
@@ -60,7 +62,7 @@ const Main = ( {screen, setScreen, setGroup} ) => {
       console.log(res, 'res tag')
       if (res.result === true) {
         setScreen(GROUP)
-        setGroup(res.group)
+        setGroup(res.data)
       } else {
 
       }
@@ -69,7 +71,6 @@ const Main = ( {screen, setScreen, setGroup} ) => {
       console.log(e, 'err send tag')
     })
   }
-
 
   const like = ( id ) => {
     console.log(id, 'ids')
@@ -90,7 +91,7 @@ const Main = ( {screen, setScreen, setGroup} ) => {
     <div>
       <Typography variant="h4" style={{textAlign: 'left', padding: 10}}>Идеи</Typography>
       <Tags getGroupByTag={getGroupByTag}/>
-      <TabSort/>
+      <TabSort setIdeas={setIdeas} ideas={ideas}/>
       <div>
         <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
           {ideas.map(( idea, i ) => {
@@ -109,7 +110,8 @@ const mstp = ( state ) => {
 }
 const mdtp = {
   setScreen,
-  setGroup
+  setGroup,
+  setTags
 }
 
 const ConnectMain = connect(mstp, mdtp)(Main)
